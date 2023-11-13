@@ -43,7 +43,7 @@ const airlineData = [
 const App = () => {
 
   const [ airlines, setAirlines ] = useState(airlineData)
-  const [ airline, setAirline ] = useState()
+  const [ airline, setAirline ] = useState(aerLingus)
   
   const onAirlineChange = (iata, name, countryCode) => {
 
@@ -55,6 +55,7 @@ const App = () => {
   }
   const onAirlineClick = (e) => {
     const selected = airlines.find(airline => airline.iata === e.target.id)
+    console.log(selected)
     setAirline(selected)
   }
 
@@ -67,7 +68,7 @@ const App = () => {
       <Airlines airlines={airlines} onClick={onAirlineClick} />
       { airline ? 
         <Airline airline={airline} onChange={onAirlineChange} isAdd={false}/> : 
-        <p>No Airline Selected!</p>
+        <p>No Airline Selected!</p> 
       }
       <Body />
 

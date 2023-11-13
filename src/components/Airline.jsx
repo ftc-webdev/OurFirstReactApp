@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 const Airline = ({ airline, onChange, isAdd}) => {
-  
+    
   const [ iata, setIata ] = useState(airline.iata)
   const [ name, setName ] = useState(airline.name)
   const [ countryCode, setCountryCode ] = useState(airline.countryCode)
