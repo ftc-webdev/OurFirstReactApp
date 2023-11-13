@@ -1,15 +1,21 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const Airline = ({ airline, onChange, isAdd}) => {
     
   const [ iata, setIata ] = useState(airline.iata)
   const [ name, setName ] = useState(airline.name)
   const [ countryCode, setCountryCode ] = useState(airline.countryCode)
+  useEffect(() => {
+    setIata(airline.iata)
+    setName(airline.name)
+    setCountryCode(airline.countryCode)
+
+  }, [airline])
 
   const onSubmit = (e) => {
     e.preventDefault()
     onChange(iata, name, countryCode)
-    
+    // clear the form
     setIata("")
     setName("")
     setCountryCode("")

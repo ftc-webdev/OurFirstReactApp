@@ -59,16 +59,21 @@ const App = () => {
     setAirline(selected)
   }
 
+  // const Test1 = ({ comp }) => comp() 
+
+  // const Test2 = () => <p>Test2</p>
 
   return (
     // react fragment - will not generate a HTML node
     <div className="container">  
       <Header className="test" />
-   
+      
+      {/* <Test1 comp={Test2} /> */}
+
       <Airlines airlines={airlines} onClick={onAirlineClick} />
       { airline ? 
-        <Airline airline={airline} onChange={onAirlineChange} isAdd={false}/> : 
-        <p>No Airline Selected!</p> 
+        <Airline airline={airline} onChange={onAirlineChange} isAdd={false}/> 
+        : <p>No Airline Selected!</p> 
       }
       <Body />
 
