@@ -1,14 +1,12 @@
 
 const Header = ({ className, text }) => {
-  const style = {
-    color:"blue",
-    backgroundColor: "black"
-  }
-  className = "test2"
+  // const style = {
+  //   color:"blue",
+  //   backgroundColor: "black"
+  // }
   return (
-    <header>
+    <header className="header">
       <h1 className={className}>{text}</h1>
-      <h2 style={style}>This is a lower header</h2>
     </header>
   )
 }

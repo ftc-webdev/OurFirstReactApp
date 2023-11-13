@@ -13,14 +13,14 @@ import Airlines from './components/Airlines'
 //   }
 // }
 
-const airline = {
+const aerLingus = {
   iata: "EI",
   name: "Aer Lingus",
   countryCode: "IE",
 }
 
-const airlines = [
-  airline,
+const airlineData = [
+  aerLingus,
   {
     iata: "BA",
     name: "British Airways",
@@ -28,7 +28,7 @@ const airlines = [
   },
   {
     iata: "QF",
-    name: "Quantas",
+    name: "Qantas",
     countryCode: "AU",
   },
   {
@@ -42,31 +42,38 @@ const airlines = [
 
 const App = () => {
 
-  const [ iata, setIata ] = useState(airline.iata)
-  const [ name, setName ] = useState(airline.name)
-  const [ countryCode, setCountryCode ] = useState(airline.countryCode)
-  
+  const [ airlines, setAirlines ] = useState(airlineData)
+  const [ airline, setAirline ] = useState()
   
   const onAirlineChange = (iata, name, countryCode) => {
-    setIata(iata)
-    setName(name)
-    setCountryCode(countryCode)
+
+    setAirlines(airlines.map(airline => airline.iata === iata ?
+      {...airline, name: name, countryCode: countryCode } :
+      airline
+    )) 
+
   }
-  
+  const onAirlineClick = (e) => {
+    const selected = airlines.find(airline => airline.iata === e.target.id)
+    setAirline(selected)
+  }
 
 
   return (
     // react fragment - will not generate a HTML node
-    <>  
+    <div className="container">  
       <Header className="test" />
    
-      <Airlines airlines={airlines} />
-      <Airline airline={airline} onChange={onAirlineChange}/>
+      <Airlines airlines={airlines} onClick={onAirlineClick} />
+      { airline ? 
+        <Airline airline={airline} onChange={onAirlineChange} isAdd={false}/> : 
+        <p>No Airline Selected!</p>
+      }
       <Body />
 
       <Footer />
       
-    </>
+    </div>
 
   )
 }
