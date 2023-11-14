@@ -1,20 +1,21 @@
 import { useEffect, useState } from 'react'
 
-const Airline = ({ airline, onChange, isAdd}) => {
-    
+const Airline = ({ airline, onChange, isNewAirline}) => {
+
+  // const { iata, name, countryCode } = airline
   const [ iata, setIata ] = useState(airline.iata)
   const [ name, setName ] = useState(airline.name)
   const [ countryCode, setCountryCode ] = useState(airline.countryCode)
-  useEffect(() => {
+  
+  useEffect( () => {
     setIata(airline.iata)
     setName(airline.name)
     setCountryCode(airline.countryCode)
-
-  }, [airline])
+  }, [ airline ])
 
   const onSubmit = (e) => {
     e.preventDefault()
-    onChange(iata, name, countryCode)
+    onChange({iata, name, countryCode})
     // clear the form
     setIata("")
     setName("")
@@ -35,7 +36,7 @@ const Airline = ({ airline, onChange, isAdd}) => {
                 // onChange(iata, name, countryCode)
               }
             }
-            disabled={!isAdd}
+            disabled={!isNewAirline}
           />
       </div>
 

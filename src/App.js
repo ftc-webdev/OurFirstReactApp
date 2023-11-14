@@ -13,14 +13,13 @@ import Airlines from './components/Airlines'
 //   }
 // }
 
-const aerLingus = {
-  iata: "EI",
-  name: "Aer Lingus",
-  countryCode: "IE",
-}
 
 const airlineData = [
-  aerLingus,
+  {
+    iata: "EI",
+    name: "Aer Lingus",
+    countryCode: "IE",
+  },
   {
     iata: "BA",
     name: "British Airways",
@@ -38,47 +37,66 @@ const airlineData = [
   },
 
 ]
+const aerLingus = airlineData[0]
 
 
 const App = () => {
 
   const [ airlines, setAirlines ] = useState(airlineData)
-  const [ airline, setAirline ] = useState(aerLingus)
-  
-  const onAirlineChange = (iata, name, countryCode) => {
+  const [ airline, setAirline ] = useState()
+  const [ isNewAirline, setIsNewAirline ] = useState(false)
 
-    setAirlines(airlines.map(airline => airline.iata === iata ?
-      {...airline, name: name, countryCode: countryCode } :
-      airline
-    )) 
+  const onAirlineChange = (newAirline) => {
+    console.log("is new airline?", isNewAirline)
+    // {...airline, name: name, countryCode: countryCode } :
+    if(isNewAirline) {
+      console.log("Is New Airline", newAirline)
+      setAirlines([...airlines, newAirline])
+    } else {
+      setAirlines(
+        airlines.map(airline => airline.iata === newAirline.iata ?
+        newAirline :
+        airline )
+      )
+  
+    }
+
+    setAirline()
+    setIsNewAirline(false)
 
   }
-  const onAirlineClick = (e) => {
-    const selected = airlines.find(airline => airline.iata === e.target.id)
+  const airlineSelected= (iata) => {
+    const selected = airlines.find(airline => airline.iata === iata)
     console.log(selected)
     setAirline(selected)
   }
 
-  // const Test1 = ({ comp }) => comp() 
-
-  // const Test2 = () => <p>Test2</p>
+  const addAirline = () => {
+    setIsNewAirline(true)
+    setAirline({iata:"", name: "", countryCode:"" })
+  }
 
   return (
-    // react fragment - will not generate a HTML node
     <div className="container">  
-      <Header className="test" />
+      <Header className="test" addButtonClicked={addAirline} isNewAirline={isNewAirline}/>
       
-      {/* <Test1 comp={Test2} /> */}
-
-      <Airlines airlines={airlines} onClick={onAirlineClick} />
-      { airline ? 
-        <Airline airline={airline} onChange={onAirlineChange} isAdd={false}/> 
-        : <p>No Airline Selected!</p> 
+      <Airlines 
+        airlines={airlines} 
+        onAirlineSelected={airlineSelected}
+      />
+      
+      { airline ? <Airline 
+        airline={airline} 
+        onChange={onAirlineChange} 
+        isNewAirline={isNewAirline}
+      /> 
+        : <p>No airline selected</p> 
       }
-      <Body />
+      
+      {/* <Body /> */}
 
       <Footer />
-      
+
     </div>
 
   )
