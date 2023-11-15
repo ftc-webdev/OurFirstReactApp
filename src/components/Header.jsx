@@ -4,17 +4,17 @@ const Header = ({ className, text , addButtonClicked, isNewAirline}) => {
   
   const [isItANewAirline, setIsItANewAirline] = useState( isNewAirline )
   
-  console.log("header code", { className, text , addButtonClicked, isNewAirline})
+  // console.log("header code", { className, text , addButtonClicked, isNewAirline})
   
   useEffect(() => {
     
-    console.log("header useEffect: button Is it a new airline", isItANewAirline, isNewAirline)
+    // console.log("header useEffect: button Is it a new airline", isItANewAirline, isNewAirline)
     setIsItANewAirline(isNewAirline)
 
   }, [ isItANewAirline, isNewAirline ])
 
   const _addButtonClicked = () => {
-    console.log("header button clicked => is new airline", isItANewAirline, isNewAirline)
+    // console.log("header button clicked => is new airline", isItANewAirline, isNewAirline)
     addButtonClicked()
   }
 

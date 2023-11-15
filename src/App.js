@@ -75,13 +75,18 @@ const App = () => {
   }
   const airlineSelected= (iata) => {
     const selected = airlines.find(airline => airline.iata === iata)
-    console.log(selected)
+    console.log("onSelect", selected)
     setAirline(selected)
   }
 
   const addAirline = () => {
     setIsNewAirline(true)
     setAirline({iata:"", name: "", countryCode:"" })
+  }
+
+  const airlineDelete = (iata) => {
+    console.log("onDelete", iata)
+    setAirlines(airlines.filter((airline) => airline.iata !== iata ))
   }
 
   return (
@@ -91,6 +96,7 @@ const App = () => {
       <Airlines 
         airlines={airlines} 
         onAirlineSelected={airlineSelected}
+        onAirlineDelete={airlineDelete}
       />
       
       { airline ? <Airline 

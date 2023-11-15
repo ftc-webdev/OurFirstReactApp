@@ -2,8 +2,6 @@ import { useEffect, useState } from 'react'
 import { Input, Select } from './Form'
 import countries from '../countries'
 
-console.log(countries)
-
 const Airline = ({ airline, onChange, isNewAirline}) => {
 
   // const { iata, name, countryCode } = airline
