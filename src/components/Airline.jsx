@@ -47,6 +47,7 @@ const Airline = ({ airline, onChange, isNewAirline}) => {
       />
   
       <Select
+        value={countryCode}
         values={countries}
         label="Country Code"
         placeHolder="Country Code"

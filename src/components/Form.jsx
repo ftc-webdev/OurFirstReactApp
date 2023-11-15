@@ -5,7 +5,7 @@ const Form = () => {
   )
 }
 
-const Select = ({values, label, code = "code", name = "name"}) => {
+const Select = ({value, values, label, code = "code", name = "name"}) => {
 
   return (
     <div className="form-control">
@@ -13,7 +13,7 @@ const Select = ({values, label, code = "code", name = "name"}) => {
         <select>
         {
           values.map((element) => (
-            <option value={ element[code] }>
+            <option value={ element[code] } selected={element[code] === value}>
             { element[name] }  
             </option>
           ))

@@ -105,7 +105,7 @@ ul {
   padding: 3px 7px;
 }
 
-.form-control input {
+.form-control input, .form-control select {
   width: 97%;
   height: 40px;
   margin: 5px;
