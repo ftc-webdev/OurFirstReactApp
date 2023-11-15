@@ -1,4 +1,8 @@
 import { useEffect, useState } from 'react'
+import { Input, Select } from './Form'
+import countries from '../countries'
+
+console.log(countries)
 
 const Airline = ({ airline, onChange, isNewAirline}) => {
 
@@ -22,54 +26,39 @@ const Airline = ({ airline, onChange, isNewAirline}) => {
     setCountryCode("")
   
   }
-
+  
   return (
     <form className="form" onSubmit={onSubmit}>
-      <div className="form-control">
-          <label>IATA :</label>
-          <input 
-            type="text"
-            placeholder="IATA Code" 
-            value={iata}
-            onChange={(e) => {
-                setIata(e.target.value)
-                // onChange(iata, name, countryCode)
-              }
-            }
-            disabled={!isNewAirline}
-          />
-      </div>
 
-      <div className="form-control">
-        <label>Name :</label>
-        <input 
-            type="text"
-            placeholder="Airline Name" 
-            value={name}
-            onChange={(e) => {
-                setName(e.target.value)
-                // onChange(iata, name, countryCode)
-              }
-            }
-          />
-      </div>
+      <Input
+        value={iata} 
+        label="IATA" 
+        placeHolder= "IATA Code"
+        onChange = {(e) => setIata(e.target.value)}
+        disabled={!isNewAirline}
+      />
 
-      <div className="form-control">
-        <label>Country Code :</label>
-        <input 
-            type="text"
-            placeholder="Country Code" 
-            value={countryCode}
-            onChange={(e) => { 
-                setCountryCode(e.target.value)
-                // onChange(iata, name, countryCode)
-              }
-            }
-          />
-      </div>
-      <div className="form-control">
-        <input type="submit" value="Save" className="btn btn-block" />
-      </div>
+
+      <Input
+        value={name}
+        label="Name"
+        placeholder="Airline Name"
+        onChange={(e) => setName(e.target.value)}  
+      />
+  
+      <Select
+        values={countries}
+        label="Country Code"
+        placeHolder="Country Code"
+        onChange={(e) => setCountryCode(e.target.value)} 
+      />
+
+
+      <Input
+        value="Save"
+        type="submit"
+        className="btn btn-block"
+      />
     </form>
   )
 }

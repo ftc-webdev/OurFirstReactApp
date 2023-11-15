@@ -41,15 +41,23 @@ const aerLingus = airlineData[0]
 
 
 const App = () => {
-
+  console.group("App.js")
   const [ airlines, setAirlines ] = useState(airlineData)
   const [ airline, setAirline ] = useState()
   const [ isNewAirline, setIsNewAirline ] = useState(false)
 
+  const error = (msg) => console.error(msg)
+  
   const onAirlineChange = (newAirline) => {
     console.log("is new airline?", isNewAirline)
     // {...airline, name: name, countryCode: countryCode } :
     if(isNewAirline) {
+      const found = airlines.find((airline) => airline.iata === newAirline.iata)
+      if(found) {
+        error(`IATA code ${newAirline.iata} already exists!`)
+        return
+      }
+
       console.log("Is New Airline", newAirline)
       setAirlines([...airlines, newAirline])
     } else {
@@ -61,7 +69,7 @@ const App = () => {
   
     }
 
-    setAirline()
+    setAirline()  // this closes the form
     setIsNewAirline(false)
 
   }
